@@ -13,7 +13,9 @@ const Button = (props) => {
 };
 
 Button.propTypes = {
+  children: PropTypes.node,
   color: PropTypes.string.isRequired,
+  hover: PropTypes.string.isRequired,
 };
 
 function App() {
