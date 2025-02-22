@@ -29,16 +29,16 @@ Header.propTypes = {
 };
 
 const Body = (props) => {
-  const { children, title, price } = props;
+  const { color, name, price } = props;
   return (
     <div className="mt-4 flex justify-between items-center">
       <div>
         <h3 className="text-sm text-gray-700">
           <a href="/product1" className="relative z-10 hover:text-blue-600">
-            {title}
+            {name}
           </a>
         </h3>
-        <p className="mt-1 text-sm text-gray-500">{children}</p>
+        <p className="mt-1 text-sm text-gray-500">{color}</p>
       </div>
       <p className="text-sm font-medium text-gray-900">{price}</p>
     </div>
@@ -46,8 +46,8 @@ const Body = (props) => {
 };
 
 Body.propTypes = {
-  children: PropTypes.node,
-  title: PropTypes.string,
+  color: PropTypes.node,
+  name: PropTypes.string,
   price: PropTypes.string,
 };
 
