@@ -1,6 +1,6 @@
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const product = [
   {
@@ -37,6 +37,23 @@ const ProductsPage = () => {
       }, 0);
       setGrandTotal(sum);
       localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
+
+  // const cartRef = useRef(JSON.parse(localStorage.getItem("cart")) || []);
+
+  // const handleAddToCartRef = (id) => {
+  //   cartRef.current = [...cartRef.current, { id, qty: 1 }];
+  //   localStorage.setItem("cart", JSON.stringify(cartRef.current));
+  // };
+
+  const grandTotalRef = useRef(null);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      grandTotalRef.current.style.display = "table-row";
+    } else {
+      grandTotalRef.current.style.display = "none";
     }
   }, [cart]);
 
@@ -113,7 +130,7 @@ const ProductsPage = () => {
                   </tr>
                 );
               })}
-              <tr>
+              <tr ref={grandTotalRef}>
                 <td className="px-4 py-2" colSpan={3}>
                   <b>Grand Total</b>
                 </td>
