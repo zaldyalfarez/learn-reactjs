@@ -1,6 +1,6 @@
 import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const product = [
   {
@@ -22,12 +22,23 @@ const product = [
 const email = localStorage.getItem("email");
 
 const ProductsPage = () => {
-  const [cart, setCart] = useState([
-    {
-      id: 1,
-      qty: 1,
-    },
-  ]);
+  const [cart, setCart] = useState([]);
+  const [grandTotal, setGrandTotal] = useState(0);
+
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+  }, []);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      const sum = cart.reduce((acc, item) => {
+        const productData = product.find((p) => p.id === item.id);
+        return acc + productData.price * item.qty;
+      }, 0);
+      setGrandTotal(sum);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
   const handleLogout = () => {
     localStorage.removeItem("email");
@@ -102,6 +113,19 @@ const ProductsPage = () => {
                   </tr>
                 );
               })}
+              <tr>
+                <td className="px-4 py-2" colSpan={3}>
+                  <b>Grand Total</b>
+                </td>
+                <td className="px-4 py-2">
+                  <b>
+                    {grandTotal.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
+                  </b>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
