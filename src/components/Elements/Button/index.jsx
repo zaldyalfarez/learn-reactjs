@@ -13,7 +13,7 @@ const Button = (props) => {
     <button
       type={type}
       className={`rounded-md ${classname} px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-${hover}-500 focus-visible:outline focus-visible:outline-offset-2`}
-      onClick={() => onClick()}
+      onClick={onClick}
     >
       {children}
     </button>
