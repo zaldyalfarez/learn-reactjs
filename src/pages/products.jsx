@@ -35,6 +35,7 @@ const ProductsPage = () => {
     if (cart.length > 0) {
       const sum = cart.reduce((acc, item) => {
         const productData = products.find((p) => p.id === item.id);
+        if (!productData) return acc;
         return acc + productData.price * item.qty;
       }, 0);
       setGrandTotal(sum);
@@ -125,6 +126,7 @@ const ProductsPage = () => {
               {products.length > 0 &&
                 cart.map((item) => {
                   const productData = products.find((p) => p.id === item.id);
+                  if (!productData) return null;
                   return (
                     <tr key={item.id}>
                       <td className="px-4 py-2">{productData.title}</td>
