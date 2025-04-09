@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const CardProduct = (props) => {
   const { children } = props;
@@ -29,16 +30,18 @@ Header.propTypes = {
 };
 
 const Body = (props) => {
-  const { color, name, price } = props;
+  const { name, price, id } = props;
   return (
     <div className="mt-4 flex justify-between items-center">
       <div>
         <h3 className="text-sm text-gray-700">
-          <a href="" className="relative z-10 hover:text-blue-600">
+          <Link
+            to={`/product/${id}`}
+            className="relative z-10 hover:text-blue-600"
+          >
             {name}
-          </a>
+          </Link>
         </h3>
-        <p className="mt-1 text-sm text-gray-500">{color}</p>
       </div>
       <p className="text-sm font-medium text-gray-900">
         {price.toLocaleString("en-US", { style: "currency", currency: "USD" })}
@@ -51,6 +54,7 @@ Body.propTypes = {
   color: PropTypes.node,
   name: PropTypes.string,
   price: PropTypes.number,
+  id: PropTypes.number,
 };
 
 const Footer = (props) => {
