@@ -2,6 +2,7 @@ import CardProduct from "../components/Fragments/CardProduct";
 import Button from "../components/Elements/Button";
 import { useEffect, useRef, useState } from "react";
 import { getProducts } from "../services/product.service";
+import { getUsername } from "../services/auth.service";
 
 // const product = [
 //   {
@@ -20,15 +21,25 @@ import { getProducts } from "../services/product.service";
 //   },
 // ];
 
-const email = localStorage.getItem("email");
+// const email = localStorage.getItem("email");
 
 const ProductsPage = () => {
   const [cart, setCart] = useState([]);
   const [grandTotal, setGrandTotal] = useState(0);
   const [products, setProducts] = useState([]);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart")) || []);
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUsername(getUsername(token));
+    } else {
+      window.location.href = "/login";
+    }
   }, []);
 
   useEffect(() => {
@@ -45,7 +56,6 @@ const ProductsPage = () => {
 
   useEffect(() => {
     getProducts((data) => {
-      console.log(data);
       setProducts(data);
     });
   }, []);
@@ -68,7 +78,7 @@ const ProductsPage = () => {
   }, [cart, products]);
 
   const handleLogout = () => {
-    localStorage.removeItem("email");
+    localStorage.removeItem("token");
     localStorage.removeItem("password");
     window.location.href = "/login";
   };
@@ -88,7 +98,7 @@ const ProductsPage = () => {
   return (
     <>
       <nav className="bg-white flex justify-end gap-2.5 items-center px-5 py-1">
-        <div>{email}</div>
+        {username}
         <Button classname="bg-red-600 hover:bg-red-700" onClick={handleLogout}>
           Logout
         </Button>
