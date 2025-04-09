@@ -20,7 +20,7 @@ const cartReducer = (
 
 // Store
 const store = legacy_createStore(cartReducer);
-console.log("Oncreate Store: ", store.getState());
+console.log("onCreate Store: ", store.getState());
 
 // Subscribe
 store.subscribe(() => {
