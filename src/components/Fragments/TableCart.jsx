@@ -1,13 +1,18 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import PropTypes from "prop-types";
+import {
+  useTotalPrice,
+  useTotalPriceDispatch,
+} from "../../hooks/useTotalPrice";
 
 const TableCart = (props) => {
   const { products } = props;
   const cart = useSelector((state) => state.cart.data);
-  const [grandTotal, setGrandTotal] = useState(0);
   const grandTotalRef = useRef(null);
+  const dispatch = useTotalPriceDispatch();
+  const { grandTotal } = useTotalPrice();
 
   useEffect(() => {
     if (products.length > 0) {
@@ -16,10 +21,13 @@ const TableCart = (props) => {
         if (!productData) return acc;
         return acc + productData.price * item.qty;
       }, 0);
-      setGrandTotal(sum);
+      dispatch({
+        type: "UPDATE_TOTAL_PRICE",
+        payload: { total: sum },
+      });
       localStorage.setItem("cart", JSON.stringify(cart));
     }
-  }, [cart, products]);
+  }, [cart, products, dispatch]);
 
   useEffect(() => {
     if (products.length > 0 && cart.length > 0) {

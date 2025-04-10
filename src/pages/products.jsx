@@ -5,25 +5,6 @@ import TableCart from "../components/Fragments/TableCart";
 import NavBar from "../components/Layouts/NavBar";
 import { useLogin } from "../hooks/useLogin";
 
-// const product = [
-//   {
-//     id: 1,
-//     image: "/images/product-1.png",
-//     name: "Chrome Hearts Jacket",
-//     price: 29.5,
-//     color: "Black",
-//   },
-//   {
-//     id: 2,
-//     image: "/images/product-2.png",
-//     name: "Chrome Hearts Rings",
-//     price: 20.75,
-//     color: "Silver",
-//   },
-// ];
-
-// const email = localStorage.getItem("email");
-
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   useLogin();

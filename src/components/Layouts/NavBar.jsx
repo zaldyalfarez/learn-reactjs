@@ -2,11 +2,13 @@ import { useSelector } from "react-redux";
 import { useLogin } from "../../hooks/useLogin";
 import Button from "../Elements/Button";
 import { useEffect, useState } from "react";
+import { useTotalPrice } from "../../hooks/useTotalPrice";
 
 const NavBar = () => {
   const username = useLogin();
   const [totalCart, setTotalCart] = useState(0);
   const cart = useSelector((state) => state.cart.data);
+  const { grandTotal } = useTotalPrice();
 
   useEffect(() => {
     const sum = cart.reduce((acc, item) => {
@@ -27,8 +29,8 @@ const NavBar = () => {
       <Button classname="bg-red-600 hover:bg-red-700" onClick={handleLogout}>
         Logout
       </Button>
-      <div className="flex items-center bg-blue-500 text-white px-2 py-1 rounded-full">
-        {totalCart}
+      <div className="flex items-center bg-blue-500 text-white px-2 py-1 rounded">
+        Item: {totalCart} | Price: ${grandTotal}
       </div>
     </nav>
   );

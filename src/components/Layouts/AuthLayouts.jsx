@@ -8,24 +8,30 @@ const AuthLayout = (props) => {
   const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
 
   return (
-    <div
-      className={`flex justify-center min-h-screen items-center ${
-        isDarkMode && "bg-gray-800 text-white"
-      }`}
-    >
-      <div className="w-full max-w-sm border border-gray-300 rounded-md p-5 relative">
-        <h1 className="font-bold text-3xl text-blue-600 mb-5">{title}</h1>
-        <button
-          className="absolute top-1.5 right-1.5 p-1.5 bg-blue-600 text-white rounded"
-          onClick={() => setIsDarkMode(!isDarkMode)}
-        >
-          {isDarkMode ? "Light" : "Dark"}
-        </button>
-        <p className="mb-5">Please fill the form below.</p>
-        {children}
-        <NavLink type={type} />
+    <>
+      <div className="absolute top-5 left-5">
+        <p>Username: johnd</p>
+        <p>Password: m38rmF$</p>
       </div>
-    </div>
+      <div
+        className={`flex justify-center min-h-screen items-center ${
+          isDarkMode && "bg-gray-800 text-white"
+        }`}
+      >
+        <div className="w-full max-w-sm border border-gray-300 rounded-md p-5 relative">
+          <h1 className="font-bold text-3xl text-blue-600 mb-5">{title}</h1>
+          <button
+            className="absolute top-1.5 right-1.5 p-1.5 bg-blue-600 text-white rounded"
+            onClick={() => setIsDarkMode(!isDarkMode)}
+          >
+            {isDarkMode ? "Light" : "Dark"}
+          </button>
+          <p className="mb-5">Please fill the form below.</p>
+          {children}
+          <NavLink type={type} />
+        </div>
+      </div>
+    </>
   );
 };
 
