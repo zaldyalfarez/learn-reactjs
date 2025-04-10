@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/cartSlice";
 
 const CardProduct = (props) => {
   const { children } = props;
+
   return (
     <div className="group relative w-72 p-4 bg-white rounded-lg shadow-lg">
       {children}
@@ -16,6 +19,7 @@ CardProduct.propTypes = {
 
 const Header = (props) => {
   const { image } = props;
+
   return (
     <img
       alt="Product 1"
@@ -31,6 +35,7 @@ Header.propTypes = {
 
 const Body = (props) => {
   const { name, price, id } = props;
+
   return (
     <div className="mt-4 flex justify-between items-center">
       <div>
@@ -58,12 +63,14 @@ Body.propTypes = {
 };
 
 const Footer = (props) => {
-  const { handleAddToCart, id } = props;
+  const { id } = props;
+  const dispatch = useDispatch();
+
   return (
     <div>
       <button
         className="w-full mt-4 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 relative z-20"
-        onClick={() => handleAddToCart(id)}
+        onClick={() => dispatch(addToCart({ id, qty: 1 }))}
       >
         Add to cart
       </button>
