@@ -13,6 +13,7 @@ import store from "./redux/store.js";
 import DarkModeContextProvider from "./context/DarkMode.jsx";
 import { TotalPriceProvider } from "./context/TotalPriceContext.jsx";
 import InputUseIdPage from "./pages/useid.jsx";
+import MemoPage from "./pages/memo.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/useid",
     element: <InputUseIdPage />,
+  },
+  {
+    path: "/memo",
+    element: <MemoPage />,
   },
 ]);
 
