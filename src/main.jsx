@@ -14,6 +14,7 @@ import DarkModeContextProvider from "./context/DarkMode.jsx";
 import { TotalPriceProvider } from "./context/TotalPriceContext.jsx";
 import InputUseIdPage from "./pages/useid.jsx";
 import MemoPage from "./pages/memo.jsx";
+import ExampleUseMemo from "./components/ExampleUseMemo/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/memo",
     element: <MemoPage />,
+  },
+  {
+    path: "/usememo",
+    element: <ExampleUseMemo />,
   },
 ]);
 
