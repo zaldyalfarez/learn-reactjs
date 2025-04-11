@@ -3,6 +3,7 @@ import { forwardRef } from "react";
 
 const Input = forwardRef((props, ref) => {
   const { type, name, placeholder } = props;
+
   return (
     <input
       type={type}

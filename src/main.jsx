@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store.js";
 import DarkModeContextProvider from "./context/DarkMode.jsx";
 import { TotalPriceProvider } from "./context/TotalPriceContext.jsx";
+import InputUseIdPage from "./pages/useid.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,9 +40,15 @@ const router = createBrowserRouter([
     path: "/product/:id",
     element: <DetailProductPage />,
   },
+  {
+    path: "/useid",
+    element: <InputUseIdPage />,
+  },
 ]);
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById("root"), {
+  identifierPrefix: "vite-react-learn-",
+}).render(
   <StrictMode>
     <Provider store={store}>
       <DarkModeContextProvider>
