@@ -15,6 +15,7 @@ import { TotalPriceProvider } from "./context/TotalPriceContext.jsx";
 import InputUseIdPage from "./pages/useid.jsx";
 import MemoPage from "./pages/memo.jsx";
 import ExampleUseMemo from "./components/ExampleUseMemo/index.jsx";
+import ExampleUseCallback from "./components/ExampleUseCallback/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/usememo",
     element: <ExampleUseMemo />,
+  },
+  {
+    path: "/usecallback",
+    element: <ExampleUseCallback />,
   },
 ]);
 
