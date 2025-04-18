@@ -15,16 +15,13 @@ const ExampleUseCallback = () => {
     return [...arr].sort(() => Math.random() - 0.5);
   };
 
-  const handleSearch = useCallback(
-    (text) => {
-      const filterUsers = dataUsers.filter((user) => {
-        return user.toLocaleLowerCase().includes(text);
-      });
+  const handleSearch = useCallback((text) => {
+    const filterUsers = dataUsers.filter((user) => {
+      return user.toLocaleLowerCase().includes(text);
+    });
 
-      setUsers(filterUsers);
-    },
-    [users]
-  );
+    setUsers(filterUsers);
+  }, []);
 
   return (
     <>

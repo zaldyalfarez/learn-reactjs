@@ -1,4 +1,5 @@
 import { memo } from "react";
+import PropTypes from "prop-types";
 
 const Search = (props) => {
   const { onChange } = props;
@@ -12,6 +13,10 @@ const Search = (props) => {
       onChange={(e) => onChange(e.target.value)}
     />
   );
+};
+
+Search.propTypes = {
+  onChange: PropTypes.func,
 };
 
 export default memo(Search);
